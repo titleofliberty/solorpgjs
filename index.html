@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+        <link href="/style.css" rel="stylesheet">
+        <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="/node_modules/jquery-ui/dist/jquery-ui.min.js"></script>
+        <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+
+        <header>
+            <div class="left-side">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      File
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">New</a></li>
+                      <li><a class="dropdown-item" href="#">Open</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#" id="menu-exit">Exit</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Insert
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#form-roll-character">Character</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#form-roll-thread">Thread</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Factories
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#form-roll-cat-qnty" data-category="bestiarys" data-quantity="quantity3">Bestiary</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#form-roll-cat-qnty" data-category="buildings" data-quantity="quantity3">Buildings</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#form-roll-cat-qnty" data-category="characters" data-quantity="quantity4">Characters</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#form-roll-cat-qnty" data-category="delvings" data-quantity="quantity3">Delving</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#form-roll-cat-qnty" data-category="equipments" data-quantity="quantity3">Equipment</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#form-roll-cat-qnty" data-category="factions" data-quantity="quantity3">Factions</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#form-roll-cat-qnty" data-category="foods" data-quantity="quantity3">Foods</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#form-roll-cat-qnty" data-category="meanings" data-quantity="quantity3">Meanings</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#form-roll-cat-qnty" data-category="travels" data-quantity="quantity3">Travels</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Tools
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#" id="menu-aggro">Aggression</a></li>
+                      <li><a class="dropdown-item" href="#" id="menu-align">Alignment</a></li>
+                      <li><a class="dropdown-item" href="#" id="menu-loot">Loot</a></li>
+                      <li><a class="dropdown-item" href="#" id="menu-focus">Event Focus</a></li>
+                      <li><a class="dropdown-item" href="#" id="menu-mishap">Mishap</a></li>
+                      <li><a class="dropdown-item" href="#" id="menu-oracle">Oracle</a></li>
+                      <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#form-roll-dice">Roll</a></li>
+                      <li><a class="dropdown-item" href="#" id="menu-weather">Weather</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right-side">
+                <button type="button" id="button-chaos-plus" class="btn btn-secondary fs-5"><i class="bi bi-plus-lg"></i></button>
+                <span id="chaos-factor">9</span>
+                <button type="button" id="button-chaos-minus" class="btn btn-secondary fs-5"><i class="bi bi-dash"></i></button>
+                <span class="chaos-label">Chaos:</span>
+                <button type="button" id="button-coins" class="btn btn-secondary fs-5">100,859</button>
+                <span class="coins-label">Coins:</span>
+            </div>
+        </header>
+        <main>
+            <div class="column-1">
+                <div><b>List</b></div>
+                <div><b>Characters</b></div>
+                <div class="characters"></div>
+                <div><b>Threads</b></div>
+                <div class="threads"></div>
+            </div>
+            <div class="column-2">
+                <div><b>Outputs</b></div>
+                <div id="outputs"></div>
+            </div>
+            <div class="column-3">
+                <div><b>Journal</b></div>
+                <div class="journal" contenteditable="true"></div>
+            </div>
+        </main>
+        <footer>Footer</footer>
+
+        <div id="form-roll-dice" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Roll Dice</h5>
+                </div>
+                <div class="modal-body">
+                  <input id="roll-formula" type="text" class="form-control form-control-lg" placeholder="Dice Formula"/>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button id="button-roll" type="button" class="btn btn-primary" data-bs-dismiss="modal">Roll</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+
+        <div id="form-roll-cat-qnty" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Category & Quantity</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <h6>Categories</h6>
+                            <div id="form-roll-cat" class="d-flex flex-column gap-2"></div>
+                        </div>
+                        <div class="col-6">
+                            <h6>Quantities</h6>
+                            <div id="form-roll-qnty" class="d-flex flex-column gap-2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <button id="button-roll-cat-qnty" type="button" class="btn btn-primary" data-bs-dismiss="modal">Roll</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div id="form-roll-character" class="modal modal-lg" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Character Sheet</h5>
+              </div>
+              <div class="modal-body">
+
+                <div class="d-flex flex-column">
+                  
+                  <div class="card mb-3">
+                    <div class="card-header">
+                      Profile
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        <div class="row row-cols-1 g-2 mb-2">
+                          <div class="col">
+                            <input type="text" class="form-control" id="form-roll-character-name" placeholder="Character name">
+                          </div>
+                        </div>
+                        <div class="row row-cols-2 g-2" id="form-roll-character-profile-items">
+                        </div>
+                      </p>
+                    </div>
+                    <div class="card-footer text-body-secondary text-end">
+                      <button class="btn btn-secondary">Random</button>
+                      <button class="btn btn-primary" id="form-roll-character-profile-add">Add</button>
+                    </div>
+                  </div>
+
+                  <div class="card mb-3">
+                    <div class="card-header">
+                      Stats
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        <div class="row row-cols-2 g-2" id="form-roll-character-stats-items">
+                        </div>
+                      </p>
+                    </div>
+                    <div class="card-footer text-body-secondary text-end">
+                      <button class="btn btn-secondary">Random</button>
+                      <button class="btn btn-primary" id="form-roll-character-stats-add">Add</button>
+                    </div>
+                  </div>
+
+                  <div class="card mb-3">
+                    <div class="card-header">
+                      Inventory
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        <div class="row row-cols-2 g-2" id="form-roll-character-inventory-items">
+                        </div>
+                      </p>
+                    </div>
+                    <div class="card-footer text-body-secondary text-end">
+                      <button class="btn btn-primary" id="form-roll-character-inventory-add">Add</button>
+                    </div>
+                  </div>
+
+                  <div class="card mb-3">
+                    <div class="card-header">
+                      Notes
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        <textarea class="form-control" placeholder="Character notes" style="height: 100px"></textarea>
+                      </p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button id="button-roll-character" type="button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+              </div>
+            </div>
+          </div>
+      </div>
+
+
+      <div id="form-roll-thread" class="modal modal-lg" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Thread Sheet</h5>
+            </div>
+            <div class="modal-body">
+
+              <div class="d-flex flex-column">
+
+                <div class="card mb-3">
+                  <div class="card-header">
+                    Details
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text">
+                      <div class="row row-cols-1 g-2 mb-2">
+                        <div class="col">
+                          <input type="text" class="form-control" id="form-roll-character-name" placeholder="Thread name">
+                        </div>
+                        <div class="col">
+                          <textarea class="form-control" placeholder="Thread notes" id="" style="height: 100px"></textarea>
+                        </div>
+                      </div>
+                    </p>
+                  </div>
+                </div>              
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button id="button-roll-character" type="button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+
+        <script src="index.js"></script>
+    </body>
+</html>
